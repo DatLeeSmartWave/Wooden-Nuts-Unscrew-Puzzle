@@ -36,7 +36,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isGoIn
+    m_ConditionEvent: isMoveIn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9021220566737089513}
@@ -86,7 +86,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isGoOut
+    m_ConditionEvent: isMoveOut
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4152066169213988185}
@@ -111,13 +111,13 @@ AnimatorController:
   m_Name: Screw Go In
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isGoIn
+  - m_Name: isMoveIn
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isGoOut
+  - m_Name: isMoveOut
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

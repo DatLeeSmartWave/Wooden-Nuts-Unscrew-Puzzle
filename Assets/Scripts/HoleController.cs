@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class HoleManager : MonoBehaviour {
-    public static HoleManager instance;
-    public GameObject screwPrefab;
+public class HoleController : MonoBehaviour {
+    public static HoleController instance;
+    public GameObject screwObjectPrefab;
 
     private void Awake() {
         instance = this;
@@ -37,13 +37,13 @@ public class HoleManager : MonoBehaviour {
                                     }
                                 }
                                 if (!hasScrewInside) {
-                                    if (ScrewManager.currentOutScrew != null) {
-                                        Vector3 oldPosition = ScrewManager.currentOutScrew.transform.position;
-                                        ScrewManager.currentOutScrew.SetOldHolePosition(oldPosition);
-                                        Destroy(ScrewManager.currentOutScrew.gameObject);
-                                        GameObject newScrew = Instantiate(screwPrefab, transform.position, Quaternion.identity);
-                                        newScrew.GetComponent<ScrewManager>().SetOldHolePosition(oldPosition);
-                                        ScrewManager.currentOutScrew = null;
+                                    if (ScrewControlManager.presentOutScrew != null) {
+                                        Vector3 oldPosition = ScrewControlManager.presentOutScrew.transform.position;
+                                        ScrewControlManager.presentOutScrew.SetPreviousHolePosition(oldPosition);
+                                        Destroy(ScrewControlManager.presentOutScrew.gameObject);
+                                        GameObject newScrew = Instantiate(screwObjectPrefab, transform.position, Quaternion.identity);
+                                        newScrew.GetComponent<ScrewControlManager>().SetPreviousHolePosition(oldPosition);
+                                        ScrewControlManager.presentOutScrew = null;
                                     }
                                 }
                             }

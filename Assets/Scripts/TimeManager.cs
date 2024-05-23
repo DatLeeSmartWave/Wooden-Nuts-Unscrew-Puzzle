@@ -3,40 +3,40 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour {
     public static TimeManager instance;
-    [SerializeField] TextMeshProUGUI timerText;
-    public float remainingTime;
-    [SerializeField] GameObject losePanel;
-    private bool isTimerRunning = true;
+    [SerializeField] TextMeshProUGUI realTimeText;
+    public float restOfTime;
+    [SerializeField] GameObject failPanel;
+    private bool isTimerCountDown = true;
 
     private void Awake() {
         instance = this;
     }
 
     void Update() {
-        if (isTimerRunning) {
-            if (remainingTime > 0) {
-                remainingTime -= Time.deltaTime;
-            } else if (remainingTime < 0) {
-                remainingTime = 0;
-                losePanel.SetActive(true);
-                PlaySoundManager.instance.audioSource.PlayOneShot(PlaySoundManager.instance.loseSound);
-                isTimerRunning = false; 
+        if (isTimerCountDown) {
+            if (restOfTime > 0) {
+                restOfTime -= Time.deltaTime;
+            } else if (restOfTime < 0) {
+                restOfTime = 0;
+                failPanel.SetActive(true);
+                PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.loseEffectSound);
+                isTimerCountDown = false; 
             }
             UpdateTimerText();
         }
     }
 
-    public void StopTimer() {
-        isTimerRunning = false;
+    public void PauseTimer() {
+        isTimerCountDown = false;
     }
     
-    public void RemainTimer() {
-        isTimerRunning = true;
+    public void ContinueTimer() {
+        isTimerCountDown = true;
     }
 
     private void UpdateTimerText() {
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        int minutes = Mathf.FloorToInt(restOfTime / 60);
+        int seconds = Mathf.FloorToInt(restOfTime % 60);
+        realTimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

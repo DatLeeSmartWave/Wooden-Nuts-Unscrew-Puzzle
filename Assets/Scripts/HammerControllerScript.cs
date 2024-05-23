@@ -1,9 +1,9 @@
 using UnityEngine;
 using CandyCoded.HapticFeedback;
 
-public class HammerController : MonoBehaviour
+public class HammerControllerScript : MonoBehaviour
 {
-    public static HammerController instance;
+    public static HammerControllerScript instance;
     public Animator animator;
 
     private void Awake() {
@@ -12,7 +12,7 @@ public class HammerController : MonoBehaviour
     }
     
     public void VibrateDevice() {
-        if(PlayerPrefs.GetInt(StringsManager.VibrateKey)==1)
+        if(PlayerPrefs.GetInt(StringsTextManager.VibrateEffectKey)==1)
         HapticFeedback.HeavyFeedback();
     }
 }

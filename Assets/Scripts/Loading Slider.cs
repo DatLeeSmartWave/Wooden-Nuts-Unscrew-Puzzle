@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoadingSlider : MonoBehaviour {
+public class SplashSceneSlider : MonoBehaviour {
     Slider slider;
 
     void Start() {
         slider = GetComponent<Slider>();
-        StartCoroutine(SmoothFill());
+        StartCoroutine(SmoothFillFunction());
     }
 
-    IEnumerator SmoothFill() {
+    IEnumerator SmoothFillFunction() {
         float duration = 3f; // 
         float elapsed = 0f;
         while (elapsed < duration) {

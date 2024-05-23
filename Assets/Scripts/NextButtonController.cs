@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NextButton : MonoBehaviour
+public class NextButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -11,6 +11,6 @@ public class NextButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LevelDisplay.Instance.levelText.text == "Level 30") gameObject.SetActive(false);
+        if(LevelDisplayManager.Instance.levelDisplayText.text == "Level 30") gameObject.SetActive(false);
     }
 }

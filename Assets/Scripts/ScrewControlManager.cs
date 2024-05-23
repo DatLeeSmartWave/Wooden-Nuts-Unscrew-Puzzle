@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class ScrewManager : MonoBehaviour {
-    public static ScrewManager instance;
+public class ScrewControlManager : MonoBehaviour {
+    public static ScrewControlManager instance;
     public Animator animator;
-    public static ScrewManager currentOutScrew = null;
-    private Vector3 oldHolePosition;
+    public static ScrewControlManager presentOutScrew = null;
+    private Vector3 previousHolePosition;
 
     void Start() {
         instance = this;
@@ -29,15 +29,15 @@ public class ScrewManager : MonoBehaviour {
                     }
                     foreach (Collider2D collider in colliders) {
                         if (collider.gameObject == gameObject) {
-                            if (currentOutScrew != this) {
-                                if (currentOutScrew != null) {
-                                    currentOutScrew.GoIn();
+                            if (presentOutScrew != this) {
+                                if (presentOutScrew != null) {
+                                    presentOutScrew.GoInside();
                                 }
-                                currentOutScrew = this;
-                                animator.SetTrigger("isGoOut");
+                                presentOutScrew = this;
+                                animator.SetTrigger(StringsTextManager.isMoveOut);
                             } else {
-                                animator.SetTrigger("isGoIn");
-                                currentOutScrew = null;
+                                animator.SetTrigger(StringsTextManager.isMoveIn);
+                                presentOutScrew = null;
                             }
                             break;
                         }
@@ -47,19 +47,19 @@ public class ScrewManager : MonoBehaviour {
         }
     }
 
-    public void GoIn() {
-        animator.SetTrigger("isGoIn");
+    public void GoInside() {
+        animator.SetTrigger(StringsTextManager.isMoveIn);
     }
 
-    public void ScrewSound() {
-        PlaySoundManager.instance.audioSource.PlayOneShot(PlaySoundManager.instance.screwSound);
+    public void ScrewSoundEffect() {
+        PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.screwEffectSound);
     }
 
-    public void SetOldHolePosition(Vector3 position) {
-        oldHolePosition = position;
+    public void SetPreviousHolePosition(Vector3 position) {
+        previousHolePosition = position;
     }
 
-    public void MoveToOldHole() {
-        transform.position = oldHolePosition;
+    public void MoveToPreviousHole() {
+        transform.position = previousHolePosition;
     }
 }

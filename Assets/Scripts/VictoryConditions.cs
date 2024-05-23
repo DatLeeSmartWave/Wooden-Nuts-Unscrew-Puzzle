@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class WinConditions : MonoBehaviour {
-    public static WinConditions Instance;
-    public GameObject winBoard, levelWinBoard, level30, nextButton;
+public class VictoryConditions : MonoBehaviour {
+    public static VictoryConditions Instance;
+    public GameObject victoryBoard, levelVictoryBoard, buttonNext;
     private bool hasShownWinBoard = false;
 
     private void Awake() {
@@ -14,15 +14,15 @@ public class WinConditions : MonoBehaviour {
         if (!hasShownWinBoard) {
             GameObject[] woodObjects = GameObject.FindGameObjectsWithTag("Wood");
             if (woodObjects.Length == 0) {
-                if (winBoard != null) {
-                    if (PlayerPrefs.GetInt(StringsManager.PlayBtnLoadScene) == 1) {
-                        PlaySceneButtonManager.instance.goldenTicketAmount += 2;
-                        PlayerPrefs.SetInt(StringsManager.GoldenTicketAmount, PlaySceneButtonManager.instance.goldenTicketAmount);
-                        TimeManager.instance.StopTimer();
+                if (victoryBoard != null) {
+                    if (PlayerPrefs.GetInt(StringsTextManager.PlayButtonLoadScene) == 1) {
+                        PlaySceneButtonController.instance.goldenTicketNumber += 2;
+                        PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, PlaySceneButtonController.instance.goldenTicketNumber);
+                        TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowWinBoard());
                     } 
-                    else if (PlayerPrefs.GetInt(StringsManager.LevelBtnLoadScene) == 1) {
-                        TimeManager.instance.StopTimer();
+                    else if (PlayerPrefs.GetInt(StringsTextManager.LevelButtonLoadScene) == 1) {
+                        TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowLevelWinBoard());
                     } 
                     hasShownWinBoard = true;
@@ -39,15 +39,15 @@ public class WinConditions : MonoBehaviour {
     }
 
     IEnumerator ShowWinBoard() {
-        LevelDisplay.Instance.UpdateLevel();
+        LevelDisplayManager.Instance.UpdateNewLevel();
         yield return new WaitForSeconds(1f);
-        PlaySoundManager.instance.audioSource.PlayOneShot(PlaySoundManager.instance.winSound);
-        winBoard.SetActive(true);
+        PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.winEffectSound);
+        victoryBoard.SetActive(true);
     }
 
     IEnumerator ShowLevelWinBoard() {
         yield return new WaitForSeconds(1f);
-        PlaySoundManager.instance.audioSource.PlayOneShot(PlaySoundManager.instance.winSound);
-        levelWinBoard.SetActive(true);
+        PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.winEffectSound);
+        levelVictoryBoard.SetActive(true);
     }
 }

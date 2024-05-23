@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c9f89b7f50c0b49929376bc572b3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screwPrefab: {fileID: 4297205475764114683, guid: 7983fe4e46797b242a1da053dd0ce8a2, type: 3}
+  screwObjectPrefab: {fileID: 4297205475764114683, guid: 4a4cdb5d3f9b2764eb77c5b995f91157, type: 3}
 --- !u!58 &5264304809792968116
 CircleCollider2D:
   m_ObjectHideFlags: 0
