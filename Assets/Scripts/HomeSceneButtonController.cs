@@ -7,8 +7,10 @@ public class HomeSceneButtonController : MonoBehaviour {
     public static HomeSceneButtonController instance;
     public RectTransform selectLevelBoard;
     Vector2 levelPanelFirstPosition;
+    Vector2 dailyRewardFirstPosition;
     //[SerializeField] TextMeshProUGUI personalProfileText;
     //[SerializeField] TextMeshProUGUI hasSetedProfileText;
+    [SerializeField] RectTransform dailyRewardBoard;
     public GameObject purchasePanel, shopPanel, soundEffectOn, soundEffectOff, soundEffectIconOn, soundEffectIconOff;
     public GameObject musicEffectOn, musicEffectOff, musicEffectIconOn, musicEffectIconOff;
     public GameObject vibrateEffectOn, vibrateEffectOff, vibrateEffectIconOn, vibrateEffectIconOff;
@@ -97,12 +99,12 @@ public class HomeSceneButtonController : MonoBehaviour {
         iconOff.SetActive(!state);
     }
 
-    public void LevelPanelAppear() {
-        selectLevelBoard.position = new Vector2(0, 0);
+    public void LevelPanelAppear(RectTransform panel) {
+        panel.position = new Vector2(0, 0);
     }
 
-    public void LevelPanelDisappear() {
-        selectLevelBoard.position = levelPanelFirstPosition;
+    public void LevelPanelDisappear(RectTransform panel) {
+        panel.position = levelPanelFirstPosition;
     }
 
     public void PlayBtnLoadScene() {
