@@ -55,6 +55,8 @@ public class HomeSceneButtonController : MonoBehaviour {
                 ActivateBackground(i);
             }
         }
+        goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
+        goldenTicketNumberText.text = goldenTicketNumber.ToString();
     }
 
     public void SoundBtn() {

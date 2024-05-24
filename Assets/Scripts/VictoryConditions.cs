@@ -18,7 +18,7 @@ public class VictoryConditions : MonoBehaviour {
                     if (PlayerPrefs.GetInt(StringsTextManager.PlayButtonLoadScene) == 1) {
                         PlaySceneButtonController.instance.goldenTicketNumber += 2;
                         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, PlaySceneButtonController.instance.goldenTicketNumber);
-                        TimeManager.instance.PauseTimer();
+                        //TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowWinBoard());
 
                         string levelText = LevelDisplayManager.Instance.levelDisplayText.text;
