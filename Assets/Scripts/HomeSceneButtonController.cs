@@ -8,22 +8,21 @@ public class HomeSceneButtonController : MonoBehaviour {
     public RectTransform selectLevelBoard;
     Vector2 levelPanelFirstPosition;
     Vector2 dailyRewardFirstPosition;
-    //[SerializeField] TextMeshProUGUI personalProfileText;
-    //[SerializeField] TextMeshProUGUI hasSetedProfileText;
     [SerializeField] RectTransform dailyRewardBoard;
     public GameObject purchasePanel, shopPanel, soundEffectOn, soundEffectOff;
     public GameObject musicEffectOn, musicEffectOff;
     public GameObject vibrateEffectOn, vibrateEffectOff;
-    //public GameObject[] onGoingIcons;
-    //public GameObject[] lockIcons;
-    //public GameObject[] finishedIcons;
     public int goldenTicketNumber;
     public TextMeshProUGUI goldenTicketNumberText;
 
-    // Key names for PlayerPrefs
-    //private const string SoundKey = "SoundState";
-    //private const string MusicKey = "MusicState";
-    //private const string VibrateKey = "VibrateState";
+    public GameObject[] checkIcons;
+    public GameObject[] lockIcons;
+    public GameObject[] backgrounds;
+
+    private const string CheckIconKeyPrefix = "CheckIcon_";
+    private const string BackgroundKeyPrefix = "Background_";
+    private const string IsFirstTimeKey = "IsFirstTime";
+    private const string LockIconKeyPrefix = "LockIcon_";
 
     private void Awake() {
         instance = this;
@@ -31,10 +30,11 @@ public class HomeSceneButtonController : MonoBehaviour {
 
     private void Start() {
         levelPanelFirstPosition = selectLevelBoard.position;
-        //if(shopBoard.activeSelf) {
-        //    goldenTicketAmount = PlayerPrefs.GetInt(StringsManager.GoldenTicketAmount, 0);
-        //}
         LoadState();
+        LoadCheckIconStates();
+        UnlockIconsBasedOnBackgroundIdx();
+        LoadBackgroundState();
+        SetDefaultIconsIfFirstTime();
     }
 
     private void Update() {
@@ -45,23 +45,17 @@ public class HomeSceneButtonController : MonoBehaviour {
             PlayerPrefs.SetInt(StringsTextManager.SoundEffectKey, 1);
         if (vibrateEffectOn.activeSelf)
             PlayerPrefs.SetInt(StringsTextManager.VibrateEffectKey, 1);
-        //UpdateLevelIcons(levelPassed);
-        //if (profilePanel.activeSelf) {
-        //    hasSetedProfileText.text = PlayerPrefs.GetString(StringsManager.PersonalInformationText);
-        //}
         if (shopPanel.activeSelf) {
             goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
             goldenTicketNumberText.text = goldenTicketNumber.ToString();
         }
+        for (int i = 0; i < checkIcons.Length; i++) {
+            if (checkIcons[i].activeSelf) {
+                PlayerPrefs.SetInt(StringsTextManager.CheckIconIdx, i + 1);
+                ActivateBackground(i);
+            }
+        }
     }
-
-    //private void UpdateLevelIcons(int levelPassed) {
-    //    for (int i = 0; i < onGoingIcons.Length; i++) {
-    //        onGoingIcons[i].SetActive(i == levelPassed - 1);
-    //        lockIcons[i].SetActive(i >= levelPassed);
-    //        finishedIcons[i].SetActive(i < levelPassed - 1);
-    //    }
-    //}
 
     public void SoundBtn() {
         ToggleState(soundEffectOn, soundEffectOff, StringsTextManager.SoundEffectKey);
@@ -109,19 +103,6 @@ public class HomeSceneButtonController : MonoBehaviour {
         SceneManager.LoadScene("PlayScene");
     }
 
-    //public void LoadLevel(int level) {
-    //    if (level < 1 || level > onGoingIcons.Length) {
-    //        return;
-    //    }
-
-    //    if (onGoingIcons[level - 1].activeSelf || finishedIcons[level - 1].activeSelf) {
-    //        PlayerPrefs.SetInt(StringsTextManager.PlayButtonLoadScene, 0);
-    //        PlayerPrefs.SetInt(StringsTextManager.LevelButtonLoadScene, 1);
-    //        PlayerPrefs.SetInt(StringsTextManager.LevelButtonIdx, level);
-    //        SceneManager.LoadScene("PlayScene");
-    //    }
-    //}
-
     public void PopSound() {
         PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.popEffectSound);
     }
@@ -136,6 +117,77 @@ public class HomeSceneButtonController : MonoBehaviour {
 
     IEnumerator HideObject(GameObject gameObject) {
         yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);    
+        gameObject.SetActive(false);
+    }
+
+    public void BGButton(int buttonIndex) {
+        foreach (GameObject checkIcon in checkIcons) {
+            checkIcon.SetActive(false);
+        }
+        if (buttonIndex >= 0 && buttonIndex < checkIcons.Length && !lockIcons[buttonIndex].activeSelf) {
+            checkIcons[buttonIndex].SetActive(true);
+            SaveCheckIconState(buttonIndex);
+            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, buttonIndex + 1); // Lưu trạng thái background đã chọn
+            PlayerPrefs.Save();
+        }
+    }
+
+
+    private void SaveCheckIconState(int activeIndex) {
+        for (int i = 0; i < checkIcons.Length; i++) {
+            PlayerPrefs.SetInt(CheckIconKeyPrefix + i, i == activeIndex ? 1 : 0);
+        }
+        PlayerPrefs.Save();
+    }
+
+    private void LoadCheckIconStates() {
+        for (int i = 0; i < checkIcons.Length; i++) {
+            bool isActive = PlayerPrefs.GetInt(CheckIconKeyPrefix + i, 0) == 1;
+            checkIcons[i].SetActive(isActive);
+            if (isActive) {
+                ActivateBackground(i);
+            }
+        }
+    }
+
+    private void UnlockIconsBasedOnBackgroundIdx() {
+        int backgroundIdx = PlayerPrefs.GetInt(StringsTextManager.BackgroundIdx);
+        for (int i = 0; i < lockIcons.Length; i++) {
+            lockIcons[i].SetActive(i >= backgroundIdx);
+        }
+    }
+
+    private void SaveBackgroundState(int activeIndex) {
+        PlayerPrefs.SetInt(BackgroundKeyPrefix + activeIndex, 1);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadBackgroundState() {
+        for (int i = 0; i < backgrounds.Length; i++) {
+            bool isActive = PlayerPrefs.GetInt(BackgroundKeyPrefix + i, 0) == 1;
+            backgrounds[i].SetActive(isActive);
+        }
+    }
+
+    private void SetDefaultIconsIfFirstTime() {
+        bool isFirstTime = PlayerPrefs.GetInt(IsFirstTimeKey, 1) == 1;
+        if (isFirstTime) {
+            checkIcons[0].SetActive(true);
+            backgrounds[0].SetActive(true);
+            lockIcons[0].SetActive(false); // Ẩn lockIcon đầu tiên
+            PlayerPrefs.SetInt(CheckIconKeyPrefix + 0, 1);
+            PlayerPrefs.SetInt(BackgroundKeyPrefix + 0, 1);
+            PlayerPrefs.SetInt(LockIconKeyPrefix + 0, 0); // Lưu trạng thái lockIcon
+            PlayerPrefs.SetInt(IsFirstTimeKey, 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private void ActivateBackground(int index) {
+        foreach (var background in backgrounds) {
+            background.SetActive(false);
+        }
+        backgrounds[index].SetActive(true);
     }
 }
+

@@ -11,6 +11,7 @@ public class PlaySceneButtonController : MonoBehaviour {
     public GameObject unscrewNumberTextIcon, undoNumberTextIcon, hammerNumberTextIcon;
     public TextMeshProUGUI unscrewNumberText, undoNumberText, hammerNumberText, goldenTicketNumberText;
     public int unscrewNumber, undoNumber, hammerNumber, goldenTicketNumber;
+    public GameObject[] backgrounds;
 
     private void Awake() {
         instance = this;
@@ -20,6 +21,7 @@ public class PlaySceneButtonController : MonoBehaviour {
         unscrewNumber = PlayerPrefs.GetInt(StringsTextManager.UnscrewNumber, 3);
         undoNumber = PlayerPrefs.GetInt(StringsTextManager.UndoNumber, 3);
         hammerNumber = PlayerPrefs.GetInt(StringsTextManager.HammerNumber, 3);
+        UpdateBackground();
     }
 
     private void Update() {
@@ -132,4 +134,12 @@ public class PlaySceneButtonController : MonoBehaviour {
             PlayerPrefs.SetInt(StringsTextManager.HammerNumber, hammerNumber);
         }
     }
+
+    private void UpdateBackground() {
+        int backgroundIdx = PlayerPrefs.GetInt(StringsTextManager.BackgroundIdx);
+        for (int i = 0; i < backgrounds.Length; i++) {
+            backgrounds[i].SetActive(i == backgroundIdx);
+        }
+    }
+
 }

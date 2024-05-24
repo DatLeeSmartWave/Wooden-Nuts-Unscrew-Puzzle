@@ -19,4 +19,6 @@ internal class StringsTextManager {
     internal static string UndoNumber = "UndoNumber";
     internal static string HammerNumber = "HammerNumber";
     internal static string GoldenTicketNumber = "GoldenTicketNumber";
+    internal static string BackgroundIdx = "BackgroundIdx";
+    internal static string CheckIconIdx = "BackgroundIdx";
 }

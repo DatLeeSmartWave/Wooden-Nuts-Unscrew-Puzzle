@@ -20,20 +20,28 @@ public class VictoryConditions : MonoBehaviour {
                         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, PlaySceneButtonController.instance.goldenTicketNumber);
                         TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowWinBoard());
-                    } 
-                    else if (PlayerPrefs.GetInt(StringsTextManager.LevelButtonLoadScene) == 1) {
-                        TimeManager.instance.PauseTimer();
-                        StartCoroutine(ShowLevelWinBoard());
-                    } 
+
+                        string levelText = LevelDisplayManager.Instance.levelDisplayText.text;
+                        if (levelText == "Level 2") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 2);
+                        } else if (levelText == "Level 3") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 3);
+                        } else if (levelText == "Level 4") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 4);
+                        } else if (levelText == "Level 5") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 5);
+                        } else if (levelText == "Level 6") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 6);
+                        } else if (levelText == "Level 7") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 7);
+                        } else if (levelText == "Level 8") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 8);
+                        } else if (levelText == "Level 9") {
+                            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, 9);
+                        }
+                    }
                     hasShownWinBoard = true;
-                } 
-                //else if (level30.activeSelf) {
-                //    if (PlayerPrefs.GetInt(StringsManager.LevelBtnLoadScene) == 1) {
-                //        TimeManager.instance.StopTimer();
-                //        StartCoroutine(ShowLevelWinBoard());
-                //    }
-                //    hasShownWinBoard = true;
-                //}
+                }
             }
         }
     }
@@ -43,11 +51,5 @@ public class VictoryConditions : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.winEffectSound);
         victoryBoard.SetActive(true);
-    }
-
-    IEnumerator ShowLevelWinBoard() {
-        yield return new WaitForSeconds(1f);
-        PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.winEffectSound);
-        levelVictoryBoard.SetActive(true);
     }
 }
