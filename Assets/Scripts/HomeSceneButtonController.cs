@@ -40,6 +40,15 @@ public class HomeSceneButtonController : MonoBehaviour {
         LoadBackgroundState();
         SetDefaultIconsIfFirstTime();
         CheckAndSetAttentionSign();
+        if (soundEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.SoundEffectKey, 1);
+        if (musicEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.MusicEffectKey, 1);
+        if (vibrateEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.VibrateEffectKey, 1);
+    }
+
+    private void Update() {
+        goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
+        PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
+        goldenTicketNumberText.text = goldenTicketNumber.ToString();
     }
 
     private void CheckAndSetAttentionSign() {
@@ -112,6 +121,7 @@ public class HomeSceneButtonController : MonoBehaviour {
     }
 
     public void CollectDailyReward(int amount) {
+        PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.claimSound);
         goldenTicketNumber += amount;
         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
@@ -131,6 +141,7 @@ public class HomeSceneButtonController : MonoBehaviour {
         if (buttonIndex >= 0 && buttonIndex < checkIcons.Length && !lockIcons[buttonIndex].activeSelf) {
             checkIcons[buttonIndex].SetActive(true);
             SaveCheckIconState(buttonIndex);
+            ActivateBackground(buttonIndex);
             PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, buttonIndex + 1);
             PlayerPrefs.Save();
         }

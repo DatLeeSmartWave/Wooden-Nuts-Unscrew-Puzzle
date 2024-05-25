@@ -51,6 +51,7 @@ public class PlaySceneButtonController : MonoBehaviour {
             undoLeadText.SetActive(false);
         }
         goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
+        PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
         if (goldenTicketNumber <= 0) goldenTicketNumber = 0;
     }

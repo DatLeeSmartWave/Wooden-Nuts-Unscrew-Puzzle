@@ -26467,6 +26467,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 720392080932971599, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f7ca0aed1fc42d74bbc8d3cfd17f564e, type: 3}
+    - target: {fileID: 720392080932971599, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3688267493403118175, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
       propertyPath: m_Name
       value: Sound Manager
@@ -26519,6 +26527,18 @@ PrefabInstance:
       propertyPath: loseSound
       value: 
       objectReference: {fileID: 8300000, guid: 045614daaa6497640aedd15d9d4e8b3f, type: 3}
+    - target: {fileID: 4861427992095015427, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: popEffectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bd12c2090a5306645a3fd97ff3c7d04e, type: 3}
+    - target: {fileID: 4861427992095015427, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: winEffectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 652f6a081bcc49b4a86eab9404f5fc4a, type: 3}
+    - target: {fileID: 4861427992095015427, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: screwEffectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cfb5cfaf7f4d89442856d5b2b2b8528c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
