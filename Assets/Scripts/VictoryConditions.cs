@@ -1,10 +1,12 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class VictoryConditions : MonoBehaviour {
     public static VictoryConditions Instance;
     public GameObject victoryBoard, levelVictoryBoard, buttonNext;
     private bool hasShownWinBoard = false;
+    [SerializeField] TextMeshProUGUI timeToWinText;
 
     private void Awake() {
         Instance = this;
@@ -16,8 +18,12 @@ public class VictoryConditions : MonoBehaviour {
             if (woodObjects.Length == 0) {
                 if (victoryBoard != null) {
                     if (PlayerPrefs.GetInt(StringsTextManager.PlayButtonLoadScene) == 1) {
-                        PlaySceneButtonController.instance.goldenTicketNumber += 2;
+                        PlaySceneButtonController.instance.goldenTicketNumber += 20;
                         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, PlaySceneButtonController.instance.goldenTicketNumber);
+                        //PlaySceneButtonController.instance.StopCoroutine(PlaySceneButtonController.instance.CountSeconds());
+                        PlaySceneButtonController.instance.StopAllCoroutines();
+                        timeToWinText.text = "YOU TOOK " + PlaySceneButtonController.instance.secondsElapsed.ToString() + " SECONDS";
+                        Debug.Log("Stop");
                         //TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowWinBoard());
 

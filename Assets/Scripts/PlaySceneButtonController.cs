@@ -13,6 +13,8 @@ public class PlaySceneButtonController : MonoBehaviour {
     public int unscrewNumber, undoNumber, hammerNumber, goldenTicketNumber;
     public GameObject[] backgrounds;
 
+    public int secondsElapsed = 0;
+
     private void Awake() {
         instance = this;
     }
@@ -22,6 +24,7 @@ public class PlaySceneButtonController : MonoBehaviour {
         undoNumber = PlayerPrefs.GetInt(StringsTextManager.UndoNumber, 3);
         hammerNumber = PlayerPrefs.GetInt(StringsTextManager.HammerNumber, 3);
         UpdateBackground();
+        StartCoroutine(CountSeconds());
     }
 
     private void Update() {
@@ -148,5 +151,16 @@ public class PlaySceneButtonController : MonoBehaviour {
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
         //purchasePanel.SetActive(true);
         //StartCoroutine(HideObject(purchasePanel));
+    }
+
+    /// <summary>
+    /// time to win
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator CountSeconds() {
+        while (true) {
+            yield return new WaitForSeconds(1f);
+            secondsElapsed++;
+        }
     }
 }
