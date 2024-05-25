@@ -5,6 +5,7 @@ public class ItemManager : MonoBehaviour {
     public static ItemManager instance;
     private bool canDestroyScrewBool;
     private bool canDestroyWoodBool;
+    private bool woodDestroyed; // Biến để theo dõi trạng thái phá hủy "wood"
 
     private void Awake() {
         instance = this;
@@ -25,52 +26,52 @@ public class ItemManager : MonoBehaviour {
 
     public void SetUpCanDestroyWood(bool value) {
         canDestroyWoodBool = value;
+        woodDestroyed = false; // Reset trạng thái khi bắt đầu có thể phá hủy "wood"
     }
 
     void DestroyScrewFunction() {
         if (Input.touchCount > 0) {
             foreach (Touch touch in Input.touches) {
-                //if (PlaySceneButtonManager.instance.unscrewAmount > 0) {
-                    if (touch.phase == TouchPhase.Began) {
-                        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                        Collider2D[] colliders = Physics2D.OverlapPointAll(touchPosition);
-                        foreach (Collider2D collider in colliders) {
-                            if (collider.CompareTag("Screw")) {
-                                collider.gameObject.SetActive(false);
-                                PlaySceneButtonController.instance.StartCoroutine(PlaySceneButtonController.instance.HideItemNoticePanel());
-                                SetUpCanDestroyScrew(false);
-                                return;
-                            }
+                if (touch.phase == TouchPhase.Began) {
+                    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                    Collider2D[] colliders = Physics2D.OverlapPointAll(touchPosition);
+                    foreach (Collider2D collider in colliders) {
+                        if (collider.CompareTag("Screw")) {
+                            collider.gameObject.SetActive(false);
+                            PlaySceneButtonController.instance.StartCoroutine(PlaySceneButtonController.instance.HideItemNoticePanel());
+                            SetUpCanDestroyScrew(false);
+                            return;
                         }
                     }
-                //}
+                }
             }
         }
     }
 
     public IEnumerator DestroyWoodFunction() {
+        if (woodDestroyed) yield break; // Nếu "wood" đã bị phá hủy, không làm gì cả
+
         if (Input.touchCount > 0) {
             foreach (Touch touch in Input.touches) {
-                //if (PlaySceneButtonManager.instance.hammerAmount > 0) {
-                    if (touch.phase == TouchPhase.Began) {
-                        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                        Collider2D[] colliders = Physics2D.OverlapPointAll(touchPosition);
-                        foreach (Collider2D collider in colliders) {
-                            if (collider.CompareTag("Wood")) {
-                                HammerControllerScript.instance.animator.SetTrigger("isBreak");
-                                HammerControllerScript.instance.transform.position = collider.gameObject.transform.position;
-                                yield return new WaitForSeconds(1.0f);
-                                collider.gameObject.SetActive(false);
-                                StartCoroutine(VibrateCamera(0.15f, 0.2f));
-                                yield return new WaitForSeconds(0.5f);
-                                HammerControllerScript.instance.gameObject.SetActive(false);
-                                PlaySceneButtonController.instance.StartCoroutine(PlaySceneButtonController.instance.HideWoodNoticePanel());
-                                SetUpCanDestroyWood(false);
-                                yield break;
-                            }
+                if (touch.phase == TouchPhase.Began) {
+                    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                    Collider2D[] colliders = Physics2D.OverlapPointAll(touchPosition);
+                    foreach (Collider2D collider in colliders) {
+                        if (collider.CompareTag("Wood")) {
+                            woodDestroyed = true; // Đánh dấu "wood" đã bị phá hủy
+                            HammerControllerScript.instance.animator.SetTrigger("isBreak");
+                            HammerControllerScript.instance.transform.position = collider.gameObject.transform.position;
+                            yield return new WaitForSeconds(1.0f);
+                            collider.gameObject.SetActive(false);
+                            StartCoroutine(VibrateCamera(0.15f, 0.2f));
+                            yield return new WaitForSeconds(0.5f);
+                            HammerControllerScript.instance.gameObject.SetActive(false);
+                            PlaySceneButtonController.instance.StartCoroutine(PlaySceneButtonController.instance.HideWoodNoticePanel());
+                            SetUpCanDestroyWood(false);
+                            yield break;
                         }
                     }
-                //}
+                }
             }
         }
     }
