@@ -116,6 +116,14 @@ public class HomeSceneButtonController : MonoBehaviour {
         purchasePanel.SetActive(true);
         StartCoroutine(HideObject(purchasePanel));
     }
+    
+    public void CollectDailyReward(int amount) {
+        goldenTicketNumber += amount;
+        PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
+        goldenTicketNumberText.text = goldenTicketNumber.ToString();
+        //purchasePanel.SetActive(true);
+        //StartCoroutine(HideObject(purchasePanel));
+    }
 
     IEnumerator HideObject(GameObject gameObject) {
         yield return new WaitForSeconds(1);
