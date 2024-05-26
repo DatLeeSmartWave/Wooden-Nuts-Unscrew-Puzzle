@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeSceneButtonController : MonoBehaviour {
     public static HomeSceneButtonController instance;
-
+    
     public RectTransform selectLevelBoard;
     Vector2 levelPanelFirstPosition;
     Vector2 dailyRewardFirstPosition;
@@ -16,7 +16,7 @@ public class HomeSceneButtonController : MonoBehaviour {
     public GameObject musicEffectOn, musicEffectOff;
     public GameObject vibrateEffectOn, vibrateEffectOff;
     public int goldenTicketNumber;
-    public TextMeshProUGUI goldenTicketNumberText;
+    public TextMeshProUGUI goldenTicketNumberText, dailyGoldenTicketNumberText;
 
     public GameObject[] checkIcons;
     public GameObject[] lockIcons;
@@ -49,6 +49,7 @@ public class HomeSceneButtonController : MonoBehaviour {
         goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
+        dailyGoldenTicketNumberText.text = goldenTicketNumberText.text;
     }
 
     private void CheckAndSetAttentionSign() {

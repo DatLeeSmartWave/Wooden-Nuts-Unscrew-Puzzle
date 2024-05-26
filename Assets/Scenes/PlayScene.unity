@@ -26528,6 +26528,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 045614daaa6497640aedd15d9d4e8b3f, type: 3}
     - target: {fileID: 4861427992095015427, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
+      propertyPath: hammerSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e897056ff45de39489153595df28d5d8, type: 3}
+    - target: {fileID: 4861427992095015427, guid: 9b9269ce2424fbd468a09b759ccb547c, type: 3}
       propertyPath: popEffectSound
       value: 
       objectReference: {fileID: 8300000, guid: bd12c2090a5306645a3fd97ff3c7d04e, type: 3}

@@ -64,6 +64,7 @@ public class ItemManager : MonoBehaviour {
                             yield return new WaitForSeconds(1.0f);
                             collider.gameObject.SetActive(false);
                             StartCoroutine(VibrateCamera(0.15f, 0.2f));
+                            PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.hammerSound);
                             yield return new WaitForSeconds(0.5f);
                             HammerControllerScript.instance.gameObject.SetActive(false);
                             PlaySceneButtonController.instance.StartCoroutine(PlaySceneButtonController.instance.HideWoodNoticePanel());

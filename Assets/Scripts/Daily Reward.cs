@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DailyReward : MonoBehaviour {
     public int LastDate;
+    [SerializeField] GameObject ticketPrefab;
+    [SerializeField] Transform destinyPos;
 
     public int Day_1;
     public int Day_2;
@@ -105,39 +107,40 @@ public class DailyReward : MonoBehaviour {
     }
 
     public void GetReward_1() {
-        GetReward(ref Day_1, "Day_1");
+        GetReward(ref Day_1, "Day_1", OFF_1.transform);
     }
 
     public void GetReward_2() {
-        GetReward(ref Day_2, "Day_2");
+        GetReward(ref Day_2, "Day_2", OFF_2.transform);
     }
 
     public void GetReward_3() {
-        GetReward(ref Day_3, "Day_3");
+        GetReward(ref Day_3, "Day_3", OFF_3.transform);
     }
 
     public void GetReward_4() {
-        GetReward(ref Day_4, "Day_4");
+        GetReward(ref Day_4, "Day_4", OFF_4.transform);
     }
 
     public void GetReward_5() {
-        GetReward(ref Day_5, "Day_5");
+        GetReward(ref Day_5, "Day_5", OFF_5.transform);
     }
 
     public void GetReward_6() {
-        GetReward(ref Day_6, "Day_6");
+        GetReward(ref Day_6, "Day_6", OFF_6.transform);
     }
 
     public void GetReward_7() {
-        GetReward(ref Day_7, "Day_7");
+        GetReward(ref Day_7, "Day_7", OFF_7.transform);
     }
 
-    private void GetReward(ref int day, string dayKey) {
+    private void GetReward(ref int day, string dayKey, Transform spawnPos) {
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
         day = 2;
         PlayerPrefs.SetInt(dayKey, 2);
         Reward();
+        SpawnTicket(spawnPos);
     }
 
     private void ResetRewards() {
@@ -156,5 +159,26 @@ public class DailyReward : MonoBehaviour {
         PlayerPrefs.SetInt("Day_5", Day_5);
         PlayerPrefs.SetInt("Day_6", Day_6);
         PlayerPrefs.SetInt("Day_7", Day_7);
+    }
+
+    public void SpawnTicket(Transform spawnPos) {
+        GameObject ticket = Instantiate(ticketPrefab, spawnPos.position, spawnPos.rotation);
+        StartCoroutine(MoveTicketToDestiny(ticket));
+    }
+
+    private IEnumerator MoveTicketToDestiny(GameObject ticket) {
+        float duration = 1.0f; // Duration of the move
+        float elapsedTime = 0.0f;
+        Vector3 startPos = ticket.transform.position;
+        Vector3 endPos = destinyPos.position;
+
+        while (elapsedTime < duration) {
+            ticket.transform.position = Vector3.Lerp(startPos, endPos, (elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        ticket.transform.position = endPos;
+        Destroy(ticket);
     }
 }

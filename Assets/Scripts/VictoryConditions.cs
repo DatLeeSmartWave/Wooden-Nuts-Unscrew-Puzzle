@@ -23,7 +23,6 @@ public class VictoryConditions : MonoBehaviour {
                         //PlaySceneButtonController.instance.StopCoroutine(PlaySceneButtonController.instance.CountSeconds());
                         PlaySceneButtonController.instance.StopAllCoroutines();
                         timeToWinText.text = "YOU TOOK " + PlaySceneButtonController.instance.secondsElapsed.ToString() + " SECONDS";
-                        Debug.Log("Stop");
                         //TimeManager.instance.PauseTimer();
                         StartCoroutine(ShowWinBoard());
 

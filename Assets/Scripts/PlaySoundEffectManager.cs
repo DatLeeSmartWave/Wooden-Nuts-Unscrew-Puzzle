@@ -10,6 +10,7 @@ public class PlaySoundEffectManager : MonoBehaviour {
     public AudioClip loseEffectSound;
     public AudioClip winEffectSound;
     public AudioClip claimSound;
+    public AudioClip hammerSound;
     // Start is called before the first frame update
     void Start() {
         instance = this;
