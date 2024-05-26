@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HomeSceneButtonController : MonoBehaviour {
     public static HomeSceneButtonController instance;
+
     public RectTransform selectLevelBoard;
     Vector2 levelPanelFirstPosition;
     Vector2 dailyRewardFirstPosition;
     [SerializeField] RectTransform dailyRewardBoard;
+    public GameObject attentionSignIcon, doneIcon;
     public GameObject purchasePanel, shopPanel, soundEffectOn, soundEffectOff;
     public GameObject musicEffectOn, musicEffectOff;
     public GameObject vibrateEffectOn, vibrateEffectOff;
@@ -19,6 +22,7 @@ public class HomeSceneButtonController : MonoBehaviour {
     public GameObject[] lockIcons;
     public GameObject[] backgrounds;
 
+    private const string AttentionSignLastShownDateKey = "AttentionSignLastShownDate";
     private const string CheckIconKeyPrefix = "CheckIcon_";
     private const string BackgroundKeyPrefix = "Background_";
     private const string IsFirstTimeKey = "IsFirstTime";
@@ -35,28 +39,30 @@ public class HomeSceneButtonController : MonoBehaviour {
         UnlockIconsBasedOnBackgroundIdx();
         LoadBackgroundState();
         SetDefaultIconsIfFirstTime();
+        CheckAndSetAttentionSign();
     }
 
-    private void Update() {
-        int levelPassed = PlayerPrefs.GetInt(StringsTextManager.LevelPassed, 0);
-        if (musicEffectOn.activeSelf)
-            PlayerPrefs.SetInt(StringsTextManager.MusicEffectKey, 1);
-        if (soundEffectOn.activeSelf)
-            PlayerPrefs.SetInt(StringsTextManager.SoundEffectKey, 1);
-        if (vibrateEffectOn.activeSelf)
-            PlayerPrefs.SetInt(StringsTextManager.VibrateEffectKey, 1);
-        if (shopPanel.activeSelf) {
-            goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
-            goldenTicketNumberText.text = goldenTicketNumber.ToString();
+    private void CheckAndSetAttentionSign() {
+        string lastShownDateString = PlayerPrefs.GetString(AttentionSignLastShownDateKey, string.Empty);
+        string todayDateString = DateTime.Now.ToString("yyyyMMdd");
+        if (lastShownDateString != todayDateString) {
+            attentionSignIcon.SetActive(true);
+            doneIcon.SetActive(false);
+            PlayerPrefs.SetString(AttentionSignLastShownDateKey, todayDateString);
+            PlayerPrefs.Save();
         }
-        for (int i = 0; i < checkIcons.Length; i++) {
-            if (checkIcons[i].activeSelf) {
-                PlayerPrefs.SetInt(StringsTextManager.CheckIconIdx, i + 1);
-                ActivateBackground(i);
-            }
-        }
-        goldenTicketNumber = PlayerPrefs.GetInt(StringsTextManager.GoldenTicketNumber);
-        goldenTicketNumberText.text = goldenTicketNumber.ToString();
+    }
+
+    private void LoadState() {
+        LoadToggleState(soundEffectOn, soundEffectOff, StringsTextManager.SoundEffectKey);
+        LoadToggleState(musicEffectOn, musicEffectOff, StringsTextManager.MusicEffectKey);
+        LoadToggleState(vibrateEffectOn, vibrateEffectOff, StringsTextManager.VibrateEffectKey);
+    }
+
+    private void LoadToggleState(GameObject onObj, GameObject offObj, string key) {
+        bool state = PlayerPrefs.GetInt(key, 1) == 1;
+        onObj.SetActive(state);
+        offObj.SetActive(!state);
     }
 
     public void SoundBtn() {
@@ -77,18 +83,6 @@ public class HomeSceneButtonController : MonoBehaviour {
         offObj.SetActive(currentState);
         PlayerPrefs.SetInt(key, currentState ? 0 : 1);
         PlayerPrefs.Save();
-    }
-
-    private void LoadState() {
-        LoadToggleState(soundEffectOn, soundEffectOff, StringsTextManager.SoundEffectKey);
-        LoadToggleState(musicEffectOn, musicEffectOff, StringsTextManager.MusicEffectKey);
-        LoadToggleState(vibrateEffectOn, vibrateEffectOff, StringsTextManager.VibrateEffectKey);
-    }
-
-    private void LoadToggleState(GameObject onObj, GameObject offObj, string key) {
-        bool state = PlayerPrefs.GetInt(key, 1) == 1;
-        onObj.SetActive(state);
-        offObj.SetActive(!state);
     }
 
     public void LevelPanelAppear(RectTransform panel) {
@@ -116,13 +110,13 @@ public class HomeSceneButtonController : MonoBehaviour {
         purchasePanel.SetActive(true);
         StartCoroutine(HideObject(purchasePanel));
     }
-    
+
     public void CollectDailyReward(int amount) {
         goldenTicketNumber += amount;
         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
-        //purchasePanel.SetActive(true);
-        //StartCoroutine(HideObject(purchasePanel));
+        doneIcon.SetActive(true);
+        attentionSignIcon.SetActive(false);
     }
 
     IEnumerator HideObject(GameObject gameObject) {
@@ -137,11 +131,10 @@ public class HomeSceneButtonController : MonoBehaviour {
         if (buttonIndex >= 0 && buttonIndex < checkIcons.Length && !lockIcons[buttonIndex].activeSelf) {
             checkIcons[buttonIndex].SetActive(true);
             SaveCheckIconState(buttonIndex);
-            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, buttonIndex + 1); // Lưu trạng thái background đã chọn
+            PlayerPrefs.SetInt(StringsTextManager.BackgroundIdx, buttonIndex + 1);
             PlayerPrefs.Save();
         }
     }
-
 
     private void SaveCheckIconState(int activeIndex) {
         for (int i = 0; i < checkIcons.Length; i++) {
@@ -184,10 +177,10 @@ public class HomeSceneButtonController : MonoBehaviour {
         if (isFirstTime) {
             checkIcons[0].SetActive(true);
             backgrounds[0].SetActive(true);
-            lockIcons[0].SetActive(false); // Ẩn lockIcon đầu tiên
+            lockIcons[0].SetActive(false);
             PlayerPrefs.SetInt(CheckIconKeyPrefix + 0, 1);
             PlayerPrefs.SetInt(BackgroundKeyPrefix + 0, 1);
-            PlayerPrefs.SetInt(LockIconKeyPrefix + 0, 0); // Lưu trạng thái lockIcon
+            PlayerPrefs.SetInt(LockIconKeyPrefix + 0, 0);
             PlayerPrefs.SetInt(IsFirstTimeKey, 0);
             PlayerPrefs.Save();
         }
@@ -200,4 +193,3 @@ public class HomeSceneButtonController : MonoBehaviour {
         backgrounds[index].SetActive(true);
     }
 }
-

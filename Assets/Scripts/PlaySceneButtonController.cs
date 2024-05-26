@@ -127,7 +127,7 @@ public class PlaySceneButtonController : MonoBehaviour {
             PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber -= 1);
             unscrewNumber++;
             PlayerPrefs.SetInt(StringsTextManager.UnscrewNumber, unscrewNumber);
-        } else if (undoObjectIcon.activeSelf && goldenTicketNumber > 0) {
+        } else if (undoObjectIcon.activeSelf && goldenTicketNumber > 0 && BarrierManager.Instance.HasHiddenWood()) {
             PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber -= 1);
             undoNumber++;
             PlayerPrefs.SetInt(StringsTextManager.UndoNumber, undoNumber);
