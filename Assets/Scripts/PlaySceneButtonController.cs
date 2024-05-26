@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlaySceneButtonController : MonoBehaviour {
     public static PlaySceneButtonController instance;
+    [SerializeField] GameObject buyBoard;
     public GameObject hammerObject, hammerObjectIcon;
     public GameObject unscrewObjectIcon, undoObjectIcon;
     public GameObject itemNoticeBoard, screwNotificationText, woodNotificationText, unscrewLeadText, undoLeadText, hammerLeadText;
     public GameObject unscrewNumberTextIcon, undoNumberTextIcon, hammerNumberTextIcon;
-    public TextMeshProUGUI unscrewNumberText, undoNumberText, hammerNumberText, goldenTicketNumberText;
+    public TextMeshProUGUI unscrewNumberText, undoNumberText, hammerNumberText, goldenTicketNumberText,buyGoldenTicketNumberText;
     public int unscrewNumber, undoNumber, hammerNumber, goldenTicketNumber;
     public GameObject[] backgrounds;
 
@@ -54,6 +55,8 @@ public class PlaySceneButtonController : MonoBehaviour {
         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
         if (goldenTicketNumber <= 0) goldenTicketNumber = 0;
+        if(buyBoard.activeSelf)
+        buyGoldenTicketNumberText.text = goldenTicketNumberText.text;
     }
 
     public void ShowHammer() {
