@@ -33,6 +33,7 @@ public class ItemManager : MonoBehaviour {
         if (Input.touchCount > 0) {
             foreach (Touch touch in Input.touches) {
                 if (touch.phase == TouchPhase.Began) {
+                    PlaySoundEffectManager.instance.audioEffectSource.PlayOneShot(PlaySoundEffectManager.instance.unscrewSound);
                     Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                     Collider2D[] colliders = Physics2D.OverlapPointAll(touchPosition);
                     foreach (Collider2D collider in colliders) {
@@ -49,7 +50,7 @@ public class ItemManager : MonoBehaviour {
     }
 
     public IEnumerator DestroyWoodFunction() {
-        if (woodDestroyed) yield break; // Nếu "wood" đã bị phá hủy, không làm gì cả
+        if (woodDestroyed) yield break; 
 
         if (Input.touchCount > 0) {
             foreach (Touch touch in Input.touches) {
