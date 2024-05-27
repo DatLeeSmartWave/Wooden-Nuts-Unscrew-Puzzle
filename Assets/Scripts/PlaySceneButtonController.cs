@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlaySceneButtonController : MonoBehaviour {
     public static PlaySceneButtonController instance;
-    [SerializeField] GameObject buyBoard;
+    [SerializeField] GameObject buyBoard, handObject;
+    [SerializeField] Transform destinyPosOfHand;
     public GameObject hammerObject, hammerObjectIcon;
     public GameObject unscrewObjectIcon, undoObjectIcon;
     public GameObject itemNoticeBoard, screwNotificationText, woodNotificationText, unscrewLeadText, undoLeadText, hammerLeadText;
@@ -26,6 +27,7 @@ public class PlaySceneButtonController : MonoBehaviour {
         hammerNumber = PlayerPrefs.GetInt(StringsTextManager.HammerNumber, 3);
         UpdateBackground();
         StartCoroutine(CountSeconds());
+        Invoke(nameof(MoveHandToDestiny),1f);
     }
 
     private void Update() {
@@ -166,5 +168,28 @@ public class PlaySceneButtonController : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             secondsElapsed++;
         }
+    }
+    /// <summary>
+    /// move hand function
+    /// </summary>
+    public void MoveHandToDestiny() {
+        StartCoroutine(MoveHandCoroutine());
+    }
+
+    private IEnumerator MoveHandCoroutine() {
+        float duration = 1.0f; 
+        Vector3 startPos = handObject.transform.position;
+        Vector3 endPos = destinyPosOfHand.position;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration) {
+            handObject.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        handObject.transform.position = endPos;
+        yield return new WaitForSeconds(.75f);
+        handObject.SetActive(false); 
     }
 }
