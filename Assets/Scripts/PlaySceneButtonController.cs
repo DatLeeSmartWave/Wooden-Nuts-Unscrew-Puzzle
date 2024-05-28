@@ -108,8 +108,14 @@ public class PlaySceneButtonController : MonoBehaviour {
         SceneManager.LoadScene("PlayScene");
     }
 
-    public void MoveToCurrentScene() {
+    public IEnumerator MoveToCurrentScene() {
         SceneManager.LoadScene("PlayScene");
+        yield return new WaitForSeconds(.35f);
+        SceneManager.LoadScene("PlayScene");
+    }
+    public void MoveToCurrentSceneAndMinusTicket() {
+        PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber -= 1);
+        StartCoroutine(MoveToCurrentScene());
     }
 
     public void MoveToHomeSceneAfterLosing() {
