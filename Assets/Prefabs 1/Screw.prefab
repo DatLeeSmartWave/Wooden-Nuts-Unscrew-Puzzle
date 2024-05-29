@@ -186,9 +186,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06816881, y: -0.00072068325}
+  m_Offset: {x: 0.06816881, y: -0.028111262}
   serializedVersion: 2
-  m_Radius: 0.58112955
+  m_Radius: 0.78067243
