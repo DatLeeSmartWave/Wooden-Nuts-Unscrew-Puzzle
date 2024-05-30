@@ -18,7 +18,7 @@ public class VictoryConditions : MonoBehaviour {
             if (woodObjects.Length == 0) {
                 if (victoryBoard != null) {
                     if (PlayerPrefs.GetInt(StringsTextManager.PlayButtonLoadScene) == 1) {
-                        PlaySceneButtonController.instance.goldenTicketNumber += 20;
+                        PlaySceneButtonController.instance.goldenTicketNumber += 1;
                         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, PlaySceneButtonController.instance.goldenTicketNumber);
                         //PlaySceneButtonController.instance.StopCoroutine(PlaySceneButtonController.instance.CountSeconds());
                         PlaySceneButtonController.instance.StopAllCoroutines();

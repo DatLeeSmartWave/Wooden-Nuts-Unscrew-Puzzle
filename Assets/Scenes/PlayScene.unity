@@ -6178,7 +6178,6 @@ MonoBehaviour:
   levelVictoryBoard: {fileID: 1456079277}
   buttonNext: {fileID: 936879382}
   timeToWinText: {fileID: 997673776}
-  mainCamera: {fileID: 519420031}
 --- !u!4 &152491315
 Transform:
   m_ObjectHideFlags: 0
@@ -37971,7 +37970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &974777638
 Transform:
   m_ObjectHideFlags: 0
@@ -54001,7 +54000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +20
+  m_text: +1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de2cc86be23742b47bf53aa5bfe7a8c5, type: 2}
   m_sharedMaterial: {fileID: -8883766114534033303, guid: de2cc86be23742b47bf53aa5bfe7a8c5, type: 2}
@@ -81487,7 +81486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1970245160
 RectTransform:
   m_ObjectHideFlags: 0
@@ -86738,7 +86737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2073866119
 Transform:
   m_ObjectHideFlags: 0
