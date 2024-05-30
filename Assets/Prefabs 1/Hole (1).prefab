@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1021869999672094899}
   - component: {fileID: 6217955754380250045}
-  - component: {fileID: 3009262347318821094}
+  - component: {fileID: 5902595198384487604}
+  - component: {fileID: 2389916936515727636}
   m_Layer: 11
   m_Name: Hole (1)
-  m_TagString: Untagged
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,14 +87,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &3009262347318821094
-EdgeCollider2D:
+--- !u!114 &5902595198384487604
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4647021990896546779}
-  m_Enabled: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c9f89b7f50c0b49929376bc572b3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screwObjectPrefab: {fileID: 4297205475764114683, guid: 4a4cdb5d3f9b2764eb77c5b995f91157, type: 3}
+--- !u!58 &2389916936515727636
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647021990896546779}
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -115,78 +129,12 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.50226545, y: -0.02868054}
-  - {x: -0.50193304, y: 0.053623132}
-  - {x: -0.49724728, y: 0.08975775}
-  - {x: -0.48625726, y: 0.1423402}
-  - {x: -0.46849576, y: 0.19313413}
-  - {x: -0.44501892, y: 0.23960687}
-  - {x: -0.41439226, y: 0.2951648}
-  - {x: -0.3740422, y: 0.34241325}
-  - {x: -0.3325786, y: 0.3844382}
-  - {x: -0.29022318, y: 0.41138422}
-  - {x: -0.24488641, y: 0.44115633}
-  - {x: -0.18973328, y: 0.46701795}
-  - {x: -0.120709054, y: 0.4894145}
-  - {x: -0.09560806, y: 0.49556372}
-  - {x: -0.05591005, y: 0.5013258}
-  - {x: -0.012841407, y: 0.50160176}
-  - {x: 0.011457094, y: 0.5031693}
-  - {x: 0.061827876, y: 0.50152135}
-  - {x: 0.116079524, y: 0.4916717}
-  - {x: 0.16322514, y: 0.47925603}
-  - {x: 0.20628375, y: 0.46320608}
-  - {x: 0.2415359, y: 0.44420525}
-  - {x: 0.280446, y: 0.4220933}
-  - {x: 0.32149643, y: 0.3913318}
-  - {x: 0.37737733, y: 0.33739096}
-  - {x: 0.4174873, y: 0.28394234}
-  - {x: 0.4516134, y: 0.23173213}
-  - {x: 0.48140654, y: 0.15569523}
-  - {x: 0.49213403, y: 0.12303527}
-  - {x: 0.49957716, y: 0.06692253}
-  - {x: 0.5046216, y: 0.034123052}
-  - {x: 0.50151634, y: 0.0014359248}
-  - {x: 0.5033311, y: -0.034886073}
-  - {x: 0.50323266, y: -0.05941072}
-  - {x: 0.49207386, y: -0.11844873}
-  - {x: 0.47160012, y: -0.18500666}
-  - {x: 0.43856347, y: -0.25212783}
-  - {x: 0.40527263, y: -0.30537245}
-  - {x: 0.37438336, y: -0.34088206}
-  - {x: 0.35726932, y: -0.35808793}
-  - {x: 0.33520338, y: -0.3762001}
-  - {x: 0.3223546, y: -0.3884813}
-  - {x: 0.29651394, y: -0.40982085}
-  - {x: 0.25387028, y: -0.4383979}
-  - {x: 0.20660932, y: -0.46219367}
-  - {x: 0.16296355, y: -0.4784286}
-  - {x: 0.11578908, y: -0.49316025}
-  - {x: 0.066399604, y: -0.5009097}
-  - {x: 0.030102298, y: -0.50302196}
-  - {x: -0.008673708, y: -0.5032784}
-  - {x: -0.06606023, y: -0.50346667}
-  - {x: -0.14038756, y: -0.48862904}
-  - {x: -0.18499467, y: -0.47185194}
-  - {x: -0.25269744, y: -0.44117}
-  - {x: -0.30681545, y: -0.40535292}
-  - {x: -0.36785907, y: -0.3510973}
-  - {x: -0.40874168, y: -0.2998073}
-  - {x: -0.4499855, y: -0.23520556}
-  - {x: -0.47149423, y: -0.18231802}
-  - {x: -0.48810762, y: -0.14578639}
-  - {x: -0.5020006, y: -0.08627133}
-  - {x: -0.5023883, y: -0.028397778}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_Offset: {x: -0.009095086, y: -0.004488442}
+  serializedVersion: 2
+  m_Radius: 0.9415735
 --- !u!1 &8869571752236303555
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,11 +144,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903917907872777854}
-  - component: {fileID: 478954193410813913}
   - component: {fileID: 5264304809792968116}
   m_Layer: 11
   m_Name: InteractZone
-  m_TagString: Hole
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,19 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1021869999672094899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &478954193410813913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8869571752236303555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c9f89b7f50c0b49929376bc572b3aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screwObjectPrefab: {fileID: 4297205475764114683, guid: 4a4cdb5d3f9b2764eb77c5b995f91157, type: 3}
 --- !u!58 &5264304809792968116
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,6 +199,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009095086, y: -0.004488442}
+  m_Offset: {x: 0.009647241, y: -0.06284926}
   serializedVersion: 2
-  m_Radius: 0.9415735
+  m_Radius: 1.2996932
