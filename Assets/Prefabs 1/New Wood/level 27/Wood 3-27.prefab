@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 1807088766799860587}
   - component: {fileID: 8319886705899271881}
   - component: {fileID: 7295309832440323428}
+  - component: {fileID: 9009812162573123988}
   m_Layer: 7
   m_Name: Wood 3-27
   m_TagString: Wood
@@ -480,6 +481,56 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &9009812162573123988
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211157350604940100}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 14.34268, y: -3.9894278}
+  - {x: 14.8833, y: -5.450792}
+  - {x: 14.3250885, y: -6.6236877}
+  - {x: 13.223038, y: -6.9676204}
+  - {x: -12.583665, y: -7.292754}
+  - {x: -14.699077, y: -6.341266}
+  - {x: -14.415376, y: -3.8722491}
+  - {x: -1.3609076, y: 6.6297455}
+  - {x: 0.02420105, y: 7.3356833}
+  - {x: 2.209014, y: 5.9973326}
+  - {x: 14.206982, y: -3.8422842}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &9085445508326508302
 GameObject:
   m_ObjectHideFlags: 0
