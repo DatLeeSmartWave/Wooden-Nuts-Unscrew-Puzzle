@@ -391,7 +391,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 17.19216}
+  m_Offset: {x: 0, y: 17.39432}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -402,7 +402,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2, y: 1.0500603}
+  m_Size: {x: 4.2, y: 1.45438}
   m_EdgeRadius: 0
 --- !u!61 &4659428027612801625
 BoxCollider2D:
@@ -661,7 +661,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -17.087418}
+  m_Offset: {x: 0, y: -17.346767}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -672,7 +672,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2, y: 1.0536652}
+  m_Size: {x: 4.2, y: 1.5723629}
   m_EdgeRadius: 0
 --- !u!1 &3951743466796412744
 GameObject:
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 8185620378478220393}
   m_Layer: 8
   m_Name: Border
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

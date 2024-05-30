@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarrierManager : MonoBehaviour {
@@ -19,8 +20,13 @@ public class BarrierManager : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Wood")) {
+            StartCoroutine(HideWood(collision.gameObject));
+        }
+    }
     IEnumerator HideWood(GameObject gameObject) {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0f);
         hiddenWoodStick = gameObject;
         gameObject.SetActive(false);
     }

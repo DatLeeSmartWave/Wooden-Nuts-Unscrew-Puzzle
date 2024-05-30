@@ -6178,6 +6178,7 @@ MonoBehaviour:
   levelVictoryBoard: {fileID: 1456079277}
   buttonNext: {fileID: 936879382}
   timeToWinText: {fileID: 997673776}
+  mainCamera: {fileID: 519420031}
 --- !u!4 &152491315
 Transform:
   m_ObjectHideFlags: 0

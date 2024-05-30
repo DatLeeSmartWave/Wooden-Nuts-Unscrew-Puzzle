@@ -232,7 +232,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -8.895126, y: 0}
+  m_Offset: {x: -9.252966, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -243,7 +243,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9196005, y: 4.1}
+  m_Size: {x: 2.6352797, y: 4.1}
   m_EdgeRadius: 0
 --- !u!61 &5438401671388728563
 BoxCollider2D:
@@ -277,7 +277,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014692783, y: -1.5543418}
+  m_Offset: {x: 0.0146923065, y: -1.6159521}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -288,7 +288,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.724655, y: 0.9913168}
+  m_Size: {x: 19.724655, y: 1.1145375}
   m_EdgeRadius: 0
 --- !u!61 &8542839944118451737
 BoxCollider2D:
@@ -322,7 +322,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016934395, y: 1.6646627}
+  m_Offset: {x: -0.016934395, y: 1.7527928}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -333,7 +333,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.586176, y: 0.770674}
+  m_Size: {x: 19.586176, y: 0.9469342}
   m_EdgeRadius: 0
 --- !u!61 &5900960998285541784
 BoxCollider2D:
@@ -367,7 +367,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.871291, y: 0}
+  m_Offset: {x: 9.242302, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -378,7 +378,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9386601, y: 4.1}
+  m_Size: {x: 2.6806808, y: 4.1}
   m_EdgeRadius: 0
 --- !u!61 &7829802785232958940
 BoxCollider2D:
