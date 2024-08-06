@@ -1,0 +1,5 @@
+E:/ProjectUnity/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/m24183r2/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/ProjectUnity/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/m24183r2/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+E:/ProjectUnity/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/m24183r2/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+E:/ProjectUnity/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/m24183r2/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+E:/ProjectUnity/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/m24183r2/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
