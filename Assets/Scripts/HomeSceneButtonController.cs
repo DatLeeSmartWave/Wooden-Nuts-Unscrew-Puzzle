@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class HomeSceneButtonController : MonoBehaviour {
     public static HomeSceneButtonController instance;
     
+    public IAPManager iAPManager;
+      public GameObject[] listTextPrice;
     public RectTransform selectLevelBoard;
     Vector2 levelPanelFirstPosition;
     Vector2 dailyRewardFirstPosition;
@@ -40,6 +43,7 @@ public class HomeSceneButtonController : MonoBehaviour {
         LoadBackgroundState();
         SetDefaultIconsIfFirstTime();
         CheckAndSetAttentionSign();
+        iAPManager.SetupBuilder();
         if (soundEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.SoundEffectKey, 1);
         if (musicEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.MusicEffectKey, 1);
         if (vibrateEffectOn.activeSelf) PlayerPrefs.SetInt(StringsTextManager.VibrateEffectKey, 1);
@@ -114,11 +118,23 @@ public class HomeSceneButtonController : MonoBehaviour {
     }
 
     public void BuyGoldenTicket(int amount) {
-        goldenTicketNumber += amount;
+       iAPManager.HandleInitiatePurchase(amount);
+    }
+
+    public void SaveGold(int amount){
+         goldenTicketNumber += amount;
         PlayerPrefs.SetInt(StringsTextManager.GoldenTicketNumber, goldenTicketNumber);
         goldenTicketNumberText.text = goldenTicketNumber.ToString();
         purchasePanel.SetActive(true);
         StartCoroutine(HideObject(purchasePanel));
+    }
+
+    public void SetLayoutItemIAP(List<ItemIAP> listItems){
+        Debug.Log("SetLayoutItemIAP" + listItems.Count);
+        for(int i = 0; i<listItems.Count; i++){
+                var textComponent = listTextPrice[i].GetComponent<TMP_Text>();
+                textComponent.text = listItems[i].price;
+        }
     }
 
     public void CollectDailyReward(int amount) {
