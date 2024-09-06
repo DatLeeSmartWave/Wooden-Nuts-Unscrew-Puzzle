@@ -1,0 +1,5 @@
+C:/New folder/New folder (2)/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/2i5t2h4i/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/New folder/New folder (2)/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/2i5t2h4i/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/New folder/New folder (2)/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/2i5t2h4i/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/New folder/New folder (2)/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/2i5t2h4i/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+C:/New folder/New folder (2)/Wooden-Nuts-Unscrew-Puzzle/.utmp/RelWithDebInfo/2i5t2h4i/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
